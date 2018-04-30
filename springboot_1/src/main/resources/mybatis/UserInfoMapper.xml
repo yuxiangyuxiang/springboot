@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.imp.UserInfoDao">
+	 <select id="userPage" parameterType="Map" resultType="com.example.demo.model.UserInfo">
+		select * from userinfo
+		<where>
+			<if test="userid!=null and userid>0 ">
+				 and userid = #{userid}
+			</if>
+			<if test="username!=null and username!='' ">
+				 and username = #{username}
+			</if>
+			<if test="userpwd!=null and userpwd!='' ">
+				 and userpwd = #{userpwd}
+			</if>
+			<if test="card!=null and card!='' ">
+				 and card=#{card}
+			</if>
+			<if test="job!=null and job!='' ">
+				 and job=#{job}
+			</if>
+			<if test="del!=null and del!='' ">
+				 and del=#{del}
+			</if>
+		</where>
+		<if test="pageIndex!=null and pageSize!=null">
+		 		  limit #{pageIndex},#{pageSize}
+		</if>
+	</select>
+</mapper> 
